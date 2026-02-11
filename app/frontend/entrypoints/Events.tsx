@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Events } from '../components/Events/Events';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { ApolloProvider } from '@apollo/client/react';
-import client from '../utils/apolloClient';
+import client from '../utiles/apolloClient';
 
 const App = () => (
   <ErrorBoundary>
