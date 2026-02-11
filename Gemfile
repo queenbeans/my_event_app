@@ -58,3 +58,6 @@ group :test do
 end
 
 gem "vite_rails", "~> 3.0"
+
+gem 'graphql'
+gem "graphiql-rails", group: :development
