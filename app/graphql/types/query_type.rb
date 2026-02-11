@@ -2,23 +2,12 @@
 
 module Types
   class QueryType < Types::BaseObject
-    field :node, Types::NodeType, null: true, description: "Fetches an object given its ID." do
-      argument :id, ID, required: true, description: "ID of the object."
+    field :upcoming_events, [Types::EventType] do
+      description "Returns a list of all events"
     end
 
-    def node(id:)
-      context.schema.object_from_id(id, context)
+    def upcoming_events
+      Event.upcoming.published_events.by_start_time
     end
-
-    field :nodes, [Types::NodeType, null: true], null: true, description: "Fetches a list of objects given a list of IDs." do
-      argument :ids, [ID], required: true, description: "IDs of the objects."
-    end
-
-    def nodes(ids:)
-      ids.map { |id| context.schema.object_from_id(id, context) }
-    end
-
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
   end
 end
