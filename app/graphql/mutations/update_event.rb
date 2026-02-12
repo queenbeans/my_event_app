@@ -10,6 +10,7 @@ module Mutations
     argument :start_time, GraphQL::Types::ISO8601DateTime, required: false
     argument :end_time, GraphQL::Types::ISO8601DateTime, required: false
     argument :published, Boolean, required: false
+    argument :location, String, required: false
 
     def resolve(id:, **attributes)
       event = Event.find(id)
