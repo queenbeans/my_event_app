@@ -5,12 +5,19 @@ const PageLayout = styled.div`
   justify-content: center;
   align-items: center; 
   min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+`;
+
+const EventsPageLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
 `;
 
 const EventGrid = styled.div`
 display: grid;
-  gap: 24px; /* Space between cards */
-  padding: 20px;
+  gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
   grid-template-columns: repeat(4, 1fr);
@@ -34,7 +41,6 @@ width: 320px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: 'Segoe UI', Roboto, sans-serif;
   display: flex;
   flex-direction: column;
 
@@ -108,8 +114,49 @@ const CTAButton = styled.button`
   }
 `;
 
+const EmptyStateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px;
+`;
+
+const EmptyStateContent = styled.div`
+  max-width: 450px;
+  text-align: center;
+  padding: 50px 40px;
+  background: #ffffff;
+  border-radius: 30px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f2f6;
+
+  & h2 {
+    font-size: 1.75rem;
+    color: #2d3436;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  & p {
+    color: #636e72;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+`;
+
+const EmptyStateIcon = styled.div`
+  font-size: 5rem;
+  margin-bottom: 24px;
+  display: inline-block;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+  animation: pulse 2s ease-in-out infinite;
+`;
+
 export {
     PageLayout,
+    EventsPageLayout,
     EventGrid,
     EventCard,
     EventImage,
@@ -118,5 +165,8 @@ export {
     EventCardContent,
     EventCardLocation,
     EventCardDescription,
-    CTAButton
+    CTAButton,
+    EmptyStateContainer,
+    EmptyStateIcon,
+    EmptyStateContent
 }
