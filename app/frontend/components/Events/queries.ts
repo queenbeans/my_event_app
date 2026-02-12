@@ -11,6 +11,7 @@ export const GET_UPCOMING_EVENTS = gql`
             startTime
             endTime
             location
+            description
         }
     }
 `;
@@ -19,9 +20,10 @@ export const GET_UPCOMING_EVENTS = gql`
 export type Event = {
     id: string,
     title: string,
-    startTime: Date,
-    endTime: Date,
+    startTime: string,
+    endTime: string,
     location?: string
+    description?: string
 }
 
 export interface UpcomingEvents {
