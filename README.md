@@ -46,3 +46,10 @@ Once you've run both vite and the rails server, you should be able to view the a
 Navigate to localhost:3000
 The events page is the root for this application but can also be reached at localhost:3000/events
 The admin page can be reached by going to localhost:3000/admin per the assignment instructions
+
+### Troubleshooting
+
+- Something I consistently ran into was an issue with the 'vite-ruby-plugin' throwing the following error
+  `error when starting dev server:
+TypeError: Cannot read properties of undefined (reading 'meta')`
+- if you encounter this issue, go into package json and make sure '^' is not included in the version as it forces yarn to resolve to the most recent patch of the plugin which is known to cause this issue. We want to be using version 5.1.1, not 5.1.2
