@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 
 const Container = styled.div<{ type: ToastType }>`
   position: relative;
@@ -13,7 +13,7 @@ const Container = styled.div<{ type: ToastType }>`
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 
   border-left: 6px solid
-    ${(props) => (props.type === 'success' ? '#00b894' : '#ff7675')};
+    ${(props) => (props.type === "success" ? "#00b894" : "#ff7675")};
 `;
 
 const Content = styled.div`
@@ -37,7 +37,7 @@ const Message = styled.p`
   line-height: 1.4;
 `;
 
-type ToastType = 'success' | 'alert';
+type ToastType = "success" | "alert";
 
 interface ToastProps {
   message: string;
@@ -57,7 +57,7 @@ export const Toast: React.FC<ToastProps> = ({ message, type, onExpiry }) => {
   return (
     <Container type={type}>
       <Content>
-        <Title>{type === 'success' ? 'Success' : 'Attention'}</Title>
+        <Title>{type === "success" ? "Success" : "Attention"}</Title>
         <Message>{message}</Message>
       </Content>
     </Container>

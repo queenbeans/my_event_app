@@ -1,13 +1,13 @@
-import React from 'react';
-import { Events, Event, GET_EVENTS, DELETE_EVENT } from './queries';
-import { useMutation, useQuery } from '@apollo/client/react';
-import { AdminTable, AdminTableContainer } from '../../styles';
-import styled from 'styled-components';
-import { DateTime } from 'luxon';
-import { Modal } from '../Modal/Modal';
-import { UpdateEventForm } from './UpdateEventForm/UpdateEventForm';
-import { CreateEventForm } from './CreateEventForm/CreateEventForm';
-import { Toast } from '../Toast/Toast';
+import React from "react";
+import { Events, Event, GET_EVENTS, DELETE_EVENT } from "./queries";
+import { useMutation, useQuery } from "@apollo/client/react";
+import { AdminTable, AdminTableContainer } from "../../styles";
+import styled from "styled-components";
+import { DateTime } from "luxon";
+import { Modal } from "../Modal/Modal";
+import { UpdateEventForm } from "./UpdateEventForm/UpdateEventForm";
+import { CreateEventForm } from "./CreateEventForm/CreateEventForm";
+import { Toast } from "../Toast/Toast";
 
 const AdminEventsPageContainer = styled.div`
   display: flex;
@@ -101,7 +101,7 @@ export const Admin = () => {
       const deletedId = data?.deleteEvent.id;
 
       if (deletedId) {
-        const cacheId = cache.identify({ id: deletedId, __typename: 'Event' });
+        const cacheId = cache.identify({ id: deletedId, __typename: "Event" });
 
         cache.evict({ id: cacheId });
 
@@ -121,22 +121,22 @@ export const Admin = () => {
     <AdminEventsPageContainer>
       {showDeleteToast && (
         <Toast
-          type='success'
-          message='Your event has been deleted'
+          type="success"
+          message="Your event has been deleted"
           onExpiry={() => setShowDeleteToast(false)}
         />
       )}
       {showSuccessToast && (
         <Toast
-          type='success'
-          message='Your request has been processed.'
+          type="success"
+          message="Your request has been processed."
           onExpiry={() => setShowSuccessToast(false)}
         />
       )}
       {showErrorToast && (
         <Toast
-          type='alert'
-          message='Something went wrong. Please try again'
+          type="alert"
+          message="Something went wrong. Please try again"
           onExpiry={() => setShowErrorToast(false)}
         />
       )}
@@ -152,7 +152,7 @@ export const Admin = () => {
       </HeaderContainer>
       {showCreateModal && (
         <Modal
-          headerText='Create a new event'
+          headerText="Create a new event"
           body={
             <CreateEventForm
               onSuccess={() => {
@@ -168,7 +168,7 @@ export const Admin = () => {
       )}
       {showEditModal && selectedEvent && (
         <Modal
-          headerText='Manage this event'
+          headerText="Manage this event"
           body={
             <UpdateEventForm
               event={selectedEvent}
@@ -211,17 +211,17 @@ export const Admin = () => {
                 <StyledTableRow key={`event-${event.id}`}>
                   <td>
                     <EventCell>
-                      <img src='https://media.istockphoto.com/id/479977238/photo/table-setting-for-an-event-party-or-wedding-reception.jpg?s=612x612&w=0&k=20&c=yIKLzW7wMydqmuItTTtUGS5cYTmrRGy0rXk81AltdTA=' />
+                      <img src="https://media.istockphoto.com/id/479977238/photo/table-setting-for-an-event-party-or-wedding-reception.jpg?s=612x612&w=0&k=20&c=yIKLzW7wMydqmuItTTtUGS5cYTmrRGy0rXk81AltdTA=" />
                       <span>{event.title}</span>
                     </EventCell>
                   </td>
                   <td>
-                    {`${DateTime.fromISO(event.startTime).toFormat('LLL dd, yyyy')} - ${DateTime.fromISO(event.endTime).toFormat('LLL dd, yyyy')}`}
+                    {`${DateTime.fromISO(event.startTime).toFormat("LLL dd, yyyy")} - ${DateTime.fromISO(event.endTime).toFormat("LLL dd, yyyy")}`}
                   </td>
                   {event.location ? <td>{event.location}</td> : <td></td>}
                   <td>
                     <span>
-                      {event.published == true ? 'Published' : 'Not Published'}
+                      {event.published == true ? "Published" : "Not Published"}
                     </span>
                   </td>
                   <td>
@@ -231,7 +231,7 @@ export const Admin = () => {
                           setShowEditModal(true);
                           setSelectedEvent(event);
                         }}
-                        className='edit'
+                        className="edit"
                       >
                         Edit
                       </StyledButton>
@@ -240,7 +240,7 @@ export const Admin = () => {
                           deleteEvent({ variables: { id: event.id } });
                           setShowDeleteToast(true);
                         }}
-                        className='delete'
+                        className="delete"
                       >
                         Delete
                       </StyledButton>

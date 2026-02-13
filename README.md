@@ -21,13 +21,13 @@
 
 #### Clone the repository
 
-git clone git@github.com:queenbeans/my_event_app.git
+- git clone git@github.com:queenbeans/my_event_app.git
 
-#### Install Ruby and JavaScript dependencies
+#### Install Ruby and JavaScript dependencies by running the following commands
 
-bundle install
-yarn install
-vite dev
+- bundle install
+- yarn install
+- vite dev
 
 #### Setup the database
 
@@ -35,7 +35,9 @@ rails db:prepare
 
 #### Optional -- add some seed data using a seed generator I created which makes use of the Faker library (also quite standard)
 
-rails db:seed
+But feel free to just create the data from scratch to test see my empty state :)
+
+- rails db:seed
 
 #### That should be it
 

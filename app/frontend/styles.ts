@@ -1,18 +1,17 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const PageLayout = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   min-height: 100vh;
-  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-family: "Segoe UI", Roboto, sans-serif;
 `;
 
 const EventsPageLayout = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-
 `;
 
 const EventGrid = styled.div`
@@ -33,20 +32,21 @@ display: grid;
 }
 `;
 
-
 const EventCard = styled.div`
-width: 320px;
+  width: 320px;
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
 
   &:hover {
-transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 `;
 
@@ -58,7 +58,7 @@ position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
-`
+`;
 
 const EventCardTitle = styled.div`
   margin: 0 0 10px 0;
@@ -70,7 +70,7 @@ const EventCardContent = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;   
+  flex-grow: 1;
 `;
 
 const EventCardLocation = styled.div`
@@ -96,7 +96,7 @@ const EventCardDate = styled.div`
   border-radius: 6px;
   font-weight: bold;
   font-size: 0.85rem;
-`
+`;
 
 const CTAButton = styled.a`
   margin-top: auto;
@@ -150,7 +150,7 @@ const EmptyStateIcon = styled.div`
   font-size: 5rem;
   margin-bottom: 24px;
   display: inline-block;
-  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
   animation: pulse 2s ease-in-out infinite;
 `;
 
@@ -165,7 +165,7 @@ const AdminTableContainer = styled.div`
 const AdminTable = styled.table`
   width: 100%;
   border-collapse: collapse;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 
   & th {
     text-align: left;
@@ -184,26 +184,25 @@ const AdminTable = styled.table`
   }
 
   & tbody tr:not(:last-child) td {
-  border-bottom: 1px solid #f1f2f6;
-}
+    border-bottom: 1px solid #f1f2f6;
+  }
 `;
 
-
 export {
-    PageLayout,
-    EventsPageLayout,
-    EventGrid,
-    EventCard,
-    EventImage,
-    EventCardTitle,
-    EventCardDate,
-    EventCardContent,
-    EventCardLocation,
-    EventCardDescription,
-    CTAButton,
-    EmptyStateContainer,
-    EmptyStateIcon,
-    EmptyStateContent,
-    AdminTable,
-    AdminTableContainer
-}
+  PageLayout,
+  EventsPageLayout,
+  EventGrid,
+  EventCard,
+  EventImage,
+  EventCardTitle,
+  EventCardDate,
+  EventCardContent,
+  EventCardLocation,
+  EventCardDescription,
+  CTAButton,
+  EmptyStateContainer,
+  EmptyStateIcon,
+  EmptyStateContent,
+  AdminTable,
+  AdminTableContainer,
+};

@@ -1,5 +1,5 @@
-import React, { Children } from 'react';
-import styled from 'styled-components';
+import React, { Children } from "react";
+import styled from "styled-components";
 
 const ModalOverlay = styled.div`
   position: fixed;

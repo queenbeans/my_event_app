@@ -1,6 +1,6 @@
-import React from 'react';
-import { GET_UPCOMING_EVENTS, UpcomingEvents } from './queries';
-import { useQuery } from '@apollo/client/react';
+import React from "react";
+import { GET_UPCOMING_EVENTS, UpcomingEvents } from "./queries";
+import { useQuery } from "@apollo/client/react";
 import {
   CTAButton,
   EmptyStateContainer,
@@ -15,9 +15,9 @@ import {
   EventGrid,
   EventImage,
   EventsPageLayout,
-} from '../../styles';
+} from "../../styles";
 
-import { DateTime } from 'luxon';
+import { DateTime } from "luxon";
 
 export const Events = () => {
   const events = useQuery<UpcomingEvents>(GET_UPCOMING_EVENTS);
@@ -40,9 +40,9 @@ export const Events = () => {
         {events.data.upcomingEvents.map((event) => (
           <EventCard key={`event-${event.id}`}>
             <EventImage>
-              <img src='https://media.istockphoto.com/id/479977238/photo/table-setting-for-an-event-party-or-wedding-reception.jpg?s=612x612&w=0&k=20&c=yIKLzW7wMydqmuItTTtUGS5cYTmrRGy0rXk81AltdTA=' />
+              <img src="https://media.istockphoto.com/id/479977238/photo/table-setting-for-an-event-party-or-wedding-reception.jpg?s=612x612&w=0&k=20&c=yIKLzW7wMydqmuItTTtUGS5cYTmrRGy0rXk81AltdTA=" />
               <EventCardDate>
-                {`${DateTime.fromISO(event.startTime).toFormat('LLL dd, yyyy')} - ${DateTime.fromISO(event.endTime).toFormat('LLL dd, yyyy')}`}
+                {`${DateTime.fromISO(event.startTime).toFormat("LLL dd, yyyy")} - ${DateTime.fromISO(event.endTime).toFormat("LLL dd, yyyy")}`}
               </EventCardDate>
             </EventImage>
             <EventCardContent>
@@ -54,7 +54,7 @@ export const Events = () => {
                 <EventCardDescription>{event.description}</EventCardDescription>
               )}
 
-              <CTAButton href='#'>Get Tickets</CTAButton>
+              <CTAButton href="#">Get Tickets</CTAButton>
             </EventCardContent>
           </EventCard>
         ))}

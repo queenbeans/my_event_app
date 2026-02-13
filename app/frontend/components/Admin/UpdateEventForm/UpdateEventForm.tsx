@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { useMutation } from '@apollo/client/react';
-import { Event, UPDATE_EVENT } from '../queries';
-import styled from 'styled-components';
-import { DateTime } from 'luxon';
+import { useMutation } from "@apollo/client/react";
+import { Event, UPDATE_EVENT } from "../queries";
+import styled from "styled-components";
+import { DateTime } from "luxon";
 
 const FormContainer = styled.form`
   display: flex;
@@ -137,12 +137,12 @@ export const UpdateEventForm = ({
       const data = {
         id: event.id,
         ...Object.fromEntries(formData.entries()),
-      } as Event | { published: 'true' | 'false' };
+      } as Event | { published: "true" | "false" };
 
       await updateEventMutation({
         variables: {
           ...data,
-          published: data.published === 'true',
+          published: data.published === "true",
         },
       });
 
@@ -156,9 +156,9 @@ export const UpdateEventForm = ({
       <FormGroup>
         <Label>Event Title</Label>
         <Input
-          type='text'
-          name='title'
-          placeholder='e.g. Annual Tech Gala'
+          type="text"
+          name="title"
+          placeholder="e.g. Annual Tech Gala"
           defaultValue={event.title}
           required
         />
@@ -167,8 +167,8 @@ export const UpdateEventForm = ({
       <FormGroup>
         <Label>Description</Label>
         <TextArea
-          name='description'
-          placeholder='Something to hype people up!'
+          name="description"
+          placeholder="Something to hype people up!"
           defaultValue={event.description}
         />
       </FormGroup>
@@ -176,10 +176,10 @@ export const UpdateEventForm = ({
       <FormGroup>
         <Label>Location</Label>
         <Input
-          type='text'
-          name='location'
+          type="text"
+          name="location"
           defaultValue={event.location}
-          placeholder='e.g. Dahntahn'
+          placeholder="e.g. Dahntahn"
           required
         />
       </FormGroup>
@@ -188,9 +188,9 @@ export const UpdateEventForm = ({
         <FormGroup>
           <Label>Start Time</Label>
           <Input
-            name='startTime'
-            type='date'
-            defaultValue={DateTime.fromISO(event.startTime).toISODate() || ''}
+            name="startTime"
+            type="date"
+            defaultValue={DateTime.fromISO(event.startTime).toISODate() || ""}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               const newStartDate = e.target.value;
               const minDate = DateTime.fromISO(newStartDate).plus({ days: 1 });
@@ -202,9 +202,9 @@ export const UpdateEventForm = ({
         <FormGroup>
           <Label>End Time</Label>
           <Input
-            name='endTime'
-            type='date'
-            defaultValue={DateTime.fromISO(event.endTime).toISODate() || ''}
+            name="endTime"
+            type="date"
+            defaultValue={DateTime.fromISO(event.endTime).toISODate() || ""}
             // @ts-ignore I am also going to ignore this type warning about the startDate
             min={startDate}
             required
@@ -217,28 +217,28 @@ export const UpdateEventForm = ({
         <SegmentedControl>
           <RadioWrapper>
             <HiddenRadio
-              type='radio'
-              name='published'
-              value='true'
-              id='public'
+              type="radio"
+              name="published"
+              value="true"
+              id="public"
               defaultChecked
             />
-            <SegmentLabel htmlFor='public'>Published</SegmentLabel>
+            <SegmentLabel htmlFor="public">Published</SegmentLabel>
           </RadioWrapper>
           <RadioWrapper>
             <HiddenRadio
-              type='radio'
-              name='published'
-              value='false'
-              id='private'
+              type="radio"
+              name="published"
+              value="false"
+              id="private"
             />
-            <SegmentLabel htmlFor='private'>Hidden</SegmentLabel>
+            <SegmentLabel htmlFor="private">Hidden</SegmentLabel>
           </RadioWrapper>
         </SegmentedControl>
       </FormGroup>
 
       <Footer>
-        <SubmitButton type='submit'>Update Event</SubmitButton>
+        <SubmitButton type="submit">Update Event</SubmitButton>
       </Footer>
     </FormContainer>
   );
