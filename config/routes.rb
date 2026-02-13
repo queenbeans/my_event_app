@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   end
   post "/graphql", to: "graphql#execute"
 
-  get "admin/index"
-  get "events/index"
+  resources :admin
+  resources :events
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
