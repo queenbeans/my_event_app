@@ -94,6 +94,17 @@ export const DELETE_EVENT = gql`
   }
 `;
 
+export const SEARCH_EVENTS = gql`
+  query SearchEvents($title: String) {
+    searchEvents(title: $title) {
+      id
+      title
+      startTime
+      location
+    }
+  }
+`;
+
 // Just for the sake of time, I'll manually define a type def for event
 export type Event = {
   id: string;

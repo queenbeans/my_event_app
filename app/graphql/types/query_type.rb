@@ -10,6 +10,8 @@ module Types
       description "Returns a list of all events"
     end
 
+    field :search_events, resolver: Resolvers::SearchEvents
+
     def upcoming_events
       Event.upcoming.published_events.by_start_time
     end
