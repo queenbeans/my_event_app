@@ -1,6 +1,6 @@
 # Event Management App
 
-## Stack
+### Stack
 
 - Rails 8
 - React w/ TS using `vite_ruby` bundler
@@ -8,7 +8,7 @@
 - SQLite - PG is kind of overkill for this
 - Wrote some specs using RSpec, which is kind of industry standard instead of the default rails testing framework
 
-## Run Instructions
+### Run Instructions
 
 ### 1. Prerequisites
 
@@ -19,25 +19,25 @@
 
 ### 2. Installation
 
-# Clone the repository
+#### Clone the repository
 
 git clone git@github.com:queenbeans/my_event_app.git
 
-# Install Ruby and JavaScript dependencies
+#### Install Ruby and JavaScript dependencies
 
 bundle install
 yarn install
 vite dev
 
-# Setup the database
+#### Setup the database
 
 rails db:prepare
 
-# Optional -- add some seed data using a seed generator I created which makes use of the Faker library (also quite standard)
+#### Optional -- add some seed data using a seed generator I created which makes use of the Faker library (also quite standard)
 
 rails db:seed
 
-# That should be it
+#### That should be it
 
 Once you've run both vite and the rails server, you should be able to view the app on port 3000
 
