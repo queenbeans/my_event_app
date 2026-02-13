@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 module Mutations
-  class UpdateEvent < BaseMutation
+  class CreateEvent < BaseMutation
     field :event, Types::EventType, null: true
     field :errors, [String], null: false
 
-    argument :id, ID, required: true
     argument :name, String, required: false
     argument :start_time, GraphQL::Types::ISO8601DateTime, required: false
     argument :end_time, GraphQL::Types::ISO8601DateTime, required: false
@@ -14,10 +13,10 @@ module Mutations
     argument :description, String, required: false
     argument :title, String, required: false
 
-    def resolve(id:, **attributes)
-      event = Event.find(id)
+    def resolve(**attributes)
+      event = Event.new(attributes)
 
-      return {event: event, errors: []} if event.update(attributes)
+      return {event: event, errors: []} if event.save
 
       {event: nil, errors: event.errors.full_messages}
     end

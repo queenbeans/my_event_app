@@ -98,7 +98,7 @@ const EventCardDate = styled.div`
   font-size: 0.85rem;
 `
 
-const CTAButton = styled.button`
+const CTAButton = styled.a`
   margin-top: auto;
   text-align: center;
   background: #2f3542;
@@ -154,6 +154,41 @@ const EmptyStateIcon = styled.div`
   animation: pulse 2s ease-in-out infinite;
 `;
 
+const AdminTableContainer = styled.div`
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  border: 1px solid #f1f2f6;
+`;
+
+const AdminTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inter', sans-serif;
+
+  & th {
+    text-align: left;
+    padding: 12px 16px;
+    color: #a4b0be;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #f1f2f6;
+  }
+
+  & td {
+    padding: 16px;
+    color: #2f3542;
+    font-size: 0.95rem;
+  }
+
+  & tbody tr:not(:last-child) td {
+  border-bottom: 1px solid #f1f2f6;
+}
+`;
+
+
 export {
     PageLayout,
     EventsPageLayout,
@@ -168,5 +203,7 @@ export {
     CTAButton,
     EmptyStateContainer,
     EmptyStateIcon,
-    EmptyStateContent
+    EmptyStateContent,
+    AdminTable,
+    AdminTableContainer
 }
