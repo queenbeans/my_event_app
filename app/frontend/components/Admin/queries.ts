@@ -118,4 +118,5 @@ export type Event = {
 
 export interface Events {
   events: Event[];
+  searchEvents: Event[];
 }

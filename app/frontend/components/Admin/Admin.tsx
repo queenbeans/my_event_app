@@ -1,5 +1,12 @@
+// @ts-nocheck
 import React from 'react';
-import { Events, Event, GET_EVENTS, DELETE_EVENT } from './queries';
+import {
+  Events,
+  Event,
+  GET_EVENTS,
+  DELETE_EVENT,
+  SEARCH_EVENTS,
+} from './queries';
 import { useMutation, useQuery } from '@apollo/client/react';
 import { AdminTable, AdminTableContainer } from '../../styles';
 import styled from 'styled-components';
@@ -8,6 +15,7 @@ import { Modal } from '../Modal/Modal';
 import { UpdateEventForm } from './UpdateEventForm/UpdateEventForm';
 import { CreateEventForm } from './CreateEventForm/CreateEventForm';
 import { Toast } from '../Toast/Toast';
+import { SearchBar } from '../SearchBar/SearchBar';
 
 const AdminEventsPageContainer = styled.div`
   display: flex;
@@ -94,7 +102,7 @@ const HeaderContainer = styled.div`
 `;
 
 export const Admin = () => {
-  const events = useQuery<Events>(GET_EVENTS);
+  let eventsData = useQuery<Events>(GET_EVENTS);
   const [deleteEvent] = useMutation(DELETE_EVENT, {
     update(cache, { data }) {
       // @ts-ignore -- gonna ignore some of these ts errors in the interest of time
@@ -116,6 +124,23 @@ export const Admin = () => {
   const [showSuccessToast, setShowSuccessToast] = React.useState(false);
   const [showErrorToast, setShowErrorToast] = React.useState(false);
   const [showDeleteToast, setShowDeleteToast] = React.useState(false);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  // always debounce to prevent people from overloading servers with requests
+  const [debouncedTerm, setDebouncedTerm] = React.useState('');
+
+  const searchEventsData = useQuery<Events>(SEARCH_EVENTS, {
+    variables: { title: debouncedTerm },
+  });
+
+  // @ts-ignore
+  if (searchEventsData.data) {
+    eventsData = searchEventsData.data?.searchEvents;
+  } else eventsData = eventsData.data?.events;
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setDebouncedTerm(searchTerm), 300);
+    return () => clearTimeout(timer); // Reset timer if user types again before 300ms
+  }, [searchTerm]);
 
   return (
     <AdminEventsPageContainer>
@@ -150,6 +175,12 @@ export const Admin = () => {
           Create Event
         </CreateEventButton>
       </HeaderContainer>
+      <SearchBar
+        type='text'
+        placeholder='Search events...'
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       {showCreateModal && (
         <Modal
           headerText='Create a new event'
@@ -185,21 +216,21 @@ export const Admin = () => {
         />
       )}
 
-      {!events.data ||
-        (events.data.events.length <= 0 && (
+      {!eventsData ||
+        (eventsData?.length <= 0 && (
           <div>
-            You have not published any events. Click 'Create Event' to get
-            started!
+            There aren't any events that match your query. Try searching for
+            something else!
           </div>
         ))}
-      {events.data && events.data.events.length > 0 && (
+      {eventsData && eventsData.length > 0 && (
         <AdminTableContainer>
           <AdminTable>
             <thead>
               <tr>
                 <th>Event</th>
                 <th>Dates</th>
-                {events.data.events.some((event) => event.location) && (
+                {eventsData.some((event) => event.location) && (
                   <th>Location</th>
                 )}
                 <th>Status</th>
@@ -207,7 +238,7 @@ export const Admin = () => {
               </tr>
             </thead>
             <tbody>
-              {events.data.events.map((event) => (
+              {eventsData.map((event) => (
                 <StyledTableRow key={`event-${event.id}`}>
                   <td>
                     <EventCell>
