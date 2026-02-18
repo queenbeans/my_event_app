@@ -64,7 +64,7 @@ gem "graphiql-rails", group: :development
 
 # Run against this stable release
 group :development, :test do
-  gem 'rspec-rails', '~> 8.0.0'
+  gem 'rspec-rails', '~> 8.0.3'
 end
 
 group :test do
